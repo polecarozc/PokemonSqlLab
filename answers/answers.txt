@@ -1,0 +1,25 @@
+#What are all the types of pokemon that a pokemon can have?
+????
+#What is the name of the pokemon with id 45?
+select * from pokemons where id = 45; - eevee
+#How many pokemon are there?
+select * from pokemons; - 656
+#How many types are there?
+select * from types; - 18 dif types
+#How many pokemon have a secondary type?
+select * from pokemons where secondary_type is not null; - 316
+
+P3
+#What is each pokemon's primary type?
+select primary_type from pokemons;
+#What is Rufflet's secondary type?
+select name, secondary_types from pokemons where name = 'Rufflet';
+#What are the names of the pokemon that belong to the trainer with trainerID 303?
+select pokemon_trainer.pokemon_id from pokemon_trainer where trainerid = 303; 2, 3
+#How many pokemon have a secondary type Poison
+select count(secondary_type) as "poison type" from pokemons where secondary_type = 7;
+#What are all the primary types and how many pokemon have that type?
+select count(pokemons.name), types.name from pokemons right join types on pokemons.primary_type = types.id group by types.name;
+#How many pokemon at level 100 does each trainer with at least one level 100 pokemone have? (Hint: your query should not display a trainer
+select count(pokelevel) as "level 100s", trainerID from pokemon_trainer group by trainerID having count(case when pokelevel=100 then 1 end)>0;
+#How many pokemon only belong to one trainer and no other?
